@@ -1,0 +1,11 @@
+WRFimport.py:6: DeprecationWarning: This function is deprecated. See: https://pyproj4.github.io/pyproj/stable/gotchas.html#upgrading-to-pyproj-2-from-pyproj-1
+  e,n=pyproj.transform(epsgprj,wrfprj,110,38.999996)
+WRFimport.py:12: DeprecationWarning: This function is deprecated. See: https://pyproj4.github.io/pyproj/stable/gotchas.html#upgrading-to-pyproj-2-from-pyproj-1
+  lon_back,lat_back=pyproj.transform(wrfprj,epsgprj,x0,y0)
+WRFimport.py:14: DeprecationWarning: This function is deprecated. See: https://pyproj4.github.io/pyproj/stable/gotchas.html#upgrading-to-pyproj-2-from-pyproj-1
+  cenlon_b,cenlat_b=pyproj.transform(wrfprj,epsgprj,e,n)
+e is "1004038.3312978421"n is "75381.62107350896"
+type of n is <class 'float'>
+lower left is -285961.6687021579,-989618.378926491 
+return lower left back is [95.03320477346514,29.908596418996574]
+return center back is [110.0,38.999995999999975]
