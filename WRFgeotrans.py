@@ -22,13 +22,16 @@ longs = xlong_in.GetRasterBand(1).ReadAsArray()
 
 #setting the input wrfproj->proj_wrf and target proj proh->gcp in this case EPSG:4326 
 proj_wrf=osr.SpatialReference()
-proj_wrf.SetPS(38.999996,110,1,30,60)
+proj_wrf.SetPS(38.999996,122,1,30,60)
 proj_gcp=osr.SpatialReference()
 proj_gcp.ImportFromEPSG(4326)
 ####test tranfermation using center###########
 ####basically the transform is using meter as unit and it means how far meter is goes from the input coordinate
 transf=osr.CoordinateTransformation(proj_gcp, proj_wrf)
-#cc=transf.TransformPoint(float(40),float(122))
+#cc=transf.TransformPoint(float(0),float(110))
+#print(f"{cc}")
+#epsg4326centerlong=110+cc[0]/87870
+#epsg4326centerlat=38.999996+cc[1]/111045 !!!! this part is a bit questionable because the meaning of number is not clear so aborted
 ##############################################
 
 #concer transfer #the output order is (x,y,z)
@@ -53,5 +56,11 @@ print(f"upper boundary x resolution = {x2} with len {len(longs[0])}")
 y1=ul[1]
 y2=(ll[1]-y1)/len(longs)/111045
 print(f"left boundary y resolution = {y2} with len {len(longs)}")
-
+#upper lat = ul[1]/111045+epsgcenter
+latup=y2*143/2+38.99996
+longright=x2*173/2+110
+latlow=38.999996-y2*143/2
+longleft=110-x2*173/2
+#print(f"centershift to {epsg4326centerlong,epsg4326centerlat}")
+print(f"latup={latup},latlow={latlow},longleft={longleft},longright={longright}")
 
